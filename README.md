@@ -3,7 +3,7 @@
 
 
 ## 此项目主要是利用data-pick与vue进行一次实际操作的例子
-### 更多方法请看看官方文档[guide](https://github.com/benitolopez/hotel-datepicker)
+### 更多方法请看看官方文档[data-pick](https://github.com/benitolopez/hotel-datepicker)
 
 ### 所用到的技术
 vue2  + vue-router + webpack + ES6/7 + axios
@@ -25,13 +25,11 @@ vue2  + vue-router + webpack + ES6/7 + axios
 |         |-- fec.js                  //  时间戳各种转换方法封装
 |         |-- pick.js                 //  核心代码实现（日期选择）
 |         |-- screen.js               //   px转rem （这里px/32）
-|		|--service	                     // 服务中心
-|		   |-- getData.js               // 获取数据的统一调配文件，对接口进行统一管理
+|		|--service	                      // 服务中心
+|		   |-- getData.js                 // 获取数据的统一调配文件，对接口进行统一管理
 |		|-- router
 |      |-- index.js                   //路由配置
-|
 |   |-- App.vue                      // 页面入口文件
-|
 |   |-- main.js                      // 程序入口文件，加载各种公共组件
 |
 |-- .babelrc                         // ES6语法编译配置
