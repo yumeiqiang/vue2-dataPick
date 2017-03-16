@@ -4,6 +4,8 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+// plugins
+import 'plugins/screen'
 /* eslint-disable no-new */
 new Vue({
   router,
