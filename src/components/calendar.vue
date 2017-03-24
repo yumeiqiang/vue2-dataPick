@@ -41,7 +41,13 @@
         endDate:fecha.format(end,'YYYY-MM-DD')
         //endDate 指的就是就是最多展示到几号
       });
-    },
+  },
+  computed:{
+
+  },
+  methods:{
+
+  }
   }
 </script>
 <style scoped>

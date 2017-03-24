@@ -6,11 +6,11 @@ export default new Router({
   mode:'history',
   routes: [
     {
-      path: '/',
-      redirect:'/shop/index'
+      path: '/home',
+      redirect:'shop/index'
     },
     {
-      path:'/home',
+      path:'/',
       component(resolve){
         require(['page/search/location.vue'],resolve)
       }
@@ -18,7 +18,7 @@ export default new Router({
     {
       path:'/time',
       component(resolve){
-        require(['components/Hello.vue'],resolve)
+        require(['components/calendar.vue'],resolve)
       }
     },
   ]

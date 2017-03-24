@@ -15,7 +15,6 @@ if (process.env.NODE_ENV == 'development'){
     return httpReq('hotelService/cityList')
   };
   var search=(data)=>{
-    console.log(data)
     return httpReq('hotelService/searchHotel',{urlParams:data})
   }
 

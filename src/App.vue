@@ -8,7 +8,6 @@
 export default {
   name: 'app',
   created(){
-    return this.$router.push({path:'/home'})
   }
 }
 </script>
