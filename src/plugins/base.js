@@ -5,6 +5,8 @@ import {
   baseUrl
 } from './env'
 import axios from 'axios'
+import store from '../store'
+import router from '../router'
 /**
  * promise请求
  * @param url 请求url
@@ -67,31 +69,40 @@ function _resolve (url, p, options) {
   })
 }
 
-// 设置请求超过15秒超时
-function _timeout () {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      reject('请求超时')
-    }, 15000)
-  })
-}
 
-/**
- * config
- */
-function config () {
-  let user = JSON.parse(window.localStorage.getItem('user'))
-  let token = 'Bearer '
-  if (user && user.token) {
-    token += user.token
-  }
-  return {
-    headers: {
-      'Authorization': token
-    }
-  }
+function config() {
+  // http request 拦截器
+  axios.interceptors.request.use(
+    config => {
+      if (store.state.Auth.token) {
+        config.headers.Authorization = `token ${store.state.Auth.token}`;
+      }
+      return config;
+    },
+    err => {
+      return Promise.reject(err);
+    });
+  // http response 拦截器
+  axios.interceptors.response.use(
+    response => {
+      return response;
+    },
+    error => {
+      if (error.response) {
+        switch (error.response.status) {
+          case 4004:
+            // 4004 清除token信息并跳转到登录页面
+            store.commit('LOGIN');
+            router.replace({
+              path: '/login',
+              query: {redirect: router.currentRoute.fullPath}
+            })
+        }
+      }
+      // console.log(JSON.stringify(error));//console : Error: Request failed with status code 402
+      return Promise.reject(error.response.data)
+    });
 }
-
 export const conf = config()
 /**
  * 对象深拷贝
@@ -124,3 +135,28 @@ function count (obj) {
   return false
 }
 
+// 设置请求超过15秒超时
+function _timeout () {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject('请求超时')
+    }, 15000)
+  })
+}
+
+/**
+ * config
+ */
+// function config () {
+//   let token = 'Bearer '
+//   if (store.state.Auth.token) {
+//     token += store.state.token
+//   }
+//   return {
+//     headers: {
+//       'Authorization': token
+//     }
+//   }
+// }
+//
+// export const conf = config()

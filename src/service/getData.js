@@ -1,7 +1,7 @@
 /**
  * Created by joojia on 17/3/15.
  */
-import {httpReq} from '../plugins/base'
+import {httpReq,conf} from '../plugins/base'
 
 //
 //
@@ -17,8 +17,14 @@ if (process.env.NODE_ENV == 'development'){
   var search=(data)=>{
     return httpReq('hotelService/searchHotel',{urlParams:data})
   }
-
+  var login=(data)=>{
+    return httpReq('user/login',{method:'post',data:data})
+  }
+  var getCode=(data)=>{
+    "use strict";
+    return httpReq('sms',{method:'post',data:data})
+  }
 }
 export {
-  getInfo,search
+  getInfo,search,login,getCode
 }

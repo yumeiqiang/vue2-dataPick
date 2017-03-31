@@ -10,9 +10,21 @@ import getters from './getters.js'
 
 Vue.use(Vuex)
 const state={
-  cityInfo:{}, // 城市信息
-  infor:{},
-  token:''  //用户token
+  cityInfo:{
+    code:'',  // city code
+    name:''  //hotel name
+  },
+  // hotel info
+  infor:{
+
+  },
+  Auth:{
+    token:'',
+    openid:'',
+    mobile:'',
+    userId:'',
+    code:''
+  }
 }
 export default new Vuex.Store({
   state,

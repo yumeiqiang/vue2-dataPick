@@ -1,47 +1,41 @@
 <template>
   <div>
-    <div id="input-id" ref="input">
+    <div id="input-id">
       <div class="choose_left">
         <i>入住</i>
-        <input id="input-left" type="text" readonly="readonly" ref="input1">
-        <span id="day1" ref="day1"></span>
+        <input id="input-left" type="text" readonly="readonly" v-model="start">
+        <span id="day1">{{startWeek}}</span>
       </div>
       <div class="choose_right">
         <i>离店</i>
-        <input id="input-right" type="text" readonly="readonly" ref="input2">
-        <span id="day2" ref="day2"></span>
+        <input id="input-right" type="text" readonly="readonly" v-model="end">
+        <span id="day2">{{endWeek}}</span>
       </div>
       <div class="choose_bottom">
-        <em>共<span id="night" ref="day3">1</span>晚</em>
+        <em>共<span id="night">{{night}}</span>晚</em>
         <img class="" src="../assets/arrow.png">
       </div>
     </div>
   </div>
 </template>
 <script>
-  import fecha from  '../plugins/fec'
-  import HotelDatepicker from '../plugins/pick'
+//  import fecha from  '../plugins/fec'
+//  import HotelDatepicker from '../plugins/pick'
   export default {
     data(){
       return{
 
       }
     },
-
+   props:{
+     start:0,
+     startWeek:'',
+     endWeek:'',
+     end:0,
+     night:1
+   },
     mounted(){
-      var today = new Date();
-      var end=new Date();
-      var tomorrow = new Date();
-      tomorrow.setDate(tomorrow.getDate() + 1);
-      end.setDate(end.getDate()+90);
-      this.$refs.day1.innerHTML=fecha.format(today,'ddd');
-      this.$refs.day2.innerHTML=fecha.format(tomorrow,'ddd');
-      this.$refs.input1.value = fecha.format(today, 'MM月DD日');
-      this.$refs.input2.value=fecha.format(tomorrow, 'MM月DD日');
-      var demo1 =new HotelDatepicker(this.$refs.input,{
-        endDate:fecha.format(end,'YYYY-MM-DD')
-        //endDate 指的就是就是最多展示到几号
-      });
+
   },
   computed:{
 

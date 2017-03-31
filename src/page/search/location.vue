@@ -23,7 +23,7 @@
             <em class="wz">定位到当前位置</em>
         </span>
     </div>
-    <calendar ref="day">
+    <calendar :startWeek="startWeek" :endWeek="endWeek" :start="start" :end="end" ref="day">
 
     </calendar>
     <div class="hotel_name">
@@ -52,6 +52,8 @@
   </div>
 </template>
 <script>
+  import fecha from  '../../plugins/fec'
+  import HotelDatepicker from '../../plugins/pick'
   import{mapState,mapMutations} from 'vuex'
   import calendar from '../../components/calendar.vue'
   import {getInfo,search} from '../../service/getData'
@@ -61,6 +63,10 @@
     },
     data(){
       return{
+        start:'',
+        end:'',
+        startWeek:'',
+        endWeek:'',
         city:'金华市',
         code:'',
         page:2,
@@ -83,11 +89,25 @@
     ])
   },
     mounted () {
+      console.log(this.$refs.day.$el.firstChild)
+     var today = new Date();
+      var end=new Date();
+      var tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      end.setDate(end.getDate()+90);
+      this.startWeek=fecha.format(today,'ddd');
+      this.endWeek=fecha.format(tomorrow,'ddd');
+      this.start = fecha.format(today, 'MM月DD日');
+      this.end=fecha.format(tomorrow, 'MM月DD日');
+      var demo1 =new HotelDatepicker(this.$refs.day.$el.firstChild,{
+        endDate:fecha.format(end,'YYYY-MM-DD')
+        //endDate 指的就是就是最多展示到几号
+      });
       this.info();
     },
   methods:{
     ...mapMutations([
-       'CITY'
+       'CITY','INFO'
     ]),
 
 //    获取首页数据
@@ -96,6 +116,11 @@
       if(exits.code==0){
        this.list=exits.data;
         this.code=this.list[0].code;
+        let cityCode={
+           code:this.code
+        }
+        this.INFO(cityCode)
+
       }
     },
     dialog(){
@@ -141,8 +166,15 @@
       data.dep=this.dep;
         let k=await search(data)
       if(k.code==0){
+        let cityCode={
+          code:this.code,
+          name:this.hotel
+        }
+        this.INFO(cityCode)
         this.CITY(k.data)
+        this.$router.push({path:'/list'})
       }
+
     },
     observe(){
 
