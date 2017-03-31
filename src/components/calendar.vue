@@ -12,7 +12,7 @@
         <span id="day2" ref="day2"></span>
       </div>
       <div class="choose_bottom">
-        <em>共<span id="night">1</span>晚</em>
+        <em>共<span id="night" ref="day3">1</span>晚</em>
         <img class="" src="../assets/arrow.png">
       </div>
     </div>
@@ -27,6 +27,7 @@
 
       }
     },
+
     mounted(){
       var today = new Date();
       var end=new Date();
@@ -46,7 +47,10 @@
 
   },
   methods:{
-
+   dia(){
+     this.$emit('dia')
+     console.log('1')
+   }
   }
   }
 </script>

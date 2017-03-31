@@ -3,3 +3,4 @@
  */
 export const INFO='INFO'
 export const CITY='CITY'
+export  const TOKEN='TOKEN'

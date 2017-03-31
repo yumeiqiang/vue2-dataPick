@@ -11,7 +11,8 @@ import getters from './getters.js'
 Vue.use(Vuex)
 const state={
   cityInfo:{}, // 城市信息
-  infor:{}
+  infor:{},
+  token:''  //用户token
 }
 export default new Vuex.Store({
   state,

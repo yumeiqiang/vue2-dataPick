@@ -3,7 +3,8 @@
  */
 import {
   INFO,
-  CITY
+  CITY,
+  TOKEN
 } from './mutation-type.js'
 
 
@@ -16,9 +17,11 @@ export default {
   [CITY](state,info){
     "use strict";
     state.infor=info
+  },
+  [TOKEN](state,token){
+    "use strict";
+    state.token=token
   }
-
-
 
 
 }

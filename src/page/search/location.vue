@@ -23,7 +23,7 @@
             <em class="wz">定位到当前位置</em>
         </span>
     </div>
-    <calendar>
+    <calendar ref="day">
 
     </calendar>
     <div class="hotel_name">
@@ -63,6 +63,7 @@
       return{
         city:'金华市',
         code:'',
+        page:2,
         city_def:'',
         loader:false,
         hotel:'', //hotel name
